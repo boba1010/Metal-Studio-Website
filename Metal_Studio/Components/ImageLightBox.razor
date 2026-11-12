@@ -1,0 +1,25 @@
+﻿<img src="@ImageUrl" alt="@AltText" class="@CssClass" style="cursor: pointer;" @onclick="Open" />
+
+@if (IsOpen)
+{
+    <div class="modal fade show d-block" style="background: rgba(0,0,0,0.8);" @onclick="Close">
+        <div class="modal-dialog modal-dialog-centered modal-lg" @onclick:stopPropagation="true">
+            <div class="modal-content bg-transparent border-0">
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
+                        @onclick="Close" style="z-index: 10;"></button>
+                <img src="@ImageUrl" alt="@AltText" class="img-fluid rounded" />
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public string ImageUrl { get; set; } = "";
+    [Parameter] public string AltText { get; set; } = "";
+    [Parameter] public string CssClass { get; set; } = "";
+
+    private bool IsOpen = false;
+
+    private void Open() => IsOpen = true;
+    private void Close() => IsOpen = false;
+}
