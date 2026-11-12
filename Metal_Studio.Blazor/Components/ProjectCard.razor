@@ -1,0 +1,35 @@
+﻿@using Metal_Studio.Blazor.Models
+
+<div class="card shadow-sm h-100">
+    <div class="row g-0 card-header">
+        @foreach (var img in Project.Images)
+        {
+            <div class="col-4">
+                <ImageLightBox ImageUrl="@img.Source" CssClass="img-fluid" AltText="@img.Alt" />
+            </div>            
+        }
+    </div>
+
+    <div class="card-body">
+        <h4 class="card-title">@Project.Title</h4>
+
+        <p class="card-text">@Project.Description</p>
+
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            @foreach (var badge in Project.Technologies)
+            {
+                <span class="badge text-bg-primary">@badge.BadgeTitle</span>
+            }
+        </div>
+
+        <div class="d-flex gap-2">
+            <a href="@Project.GithubUrl" target="_blank" class="btn btn-outline-primary">GitHub</a>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public Project Project { get; set; } = null!;
+}

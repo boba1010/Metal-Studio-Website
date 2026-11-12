@@ -1,0 +1,48 @@
+﻿@using Metal_Studio.Blazor.Models
+@using Metal_Studio.Blazor.Services
+@inject GitHubStatsService GitHubStatsService
+
+<div class="card p-4 shadow-sm mb-5">
+    <h2 class="fw-bold mb-4 text-center">Open Source Activity</h2>
+
+    @if (stats is null)
+    {
+        <p class="text-center text-muted">Loading GitHub stats...</p>
+    }
+    else
+    {
+        <div class="row g-4 text-center">
+            <div class="col-md-3">
+                <h3 class="fw-bold text-primary mb-0">@stats.PublicRepos</h3>
+                <p class="small text-muted mb-0">Public Repos</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="fw-bold text-primary mb-0">@stats.Followers</h3>
+                <p class="small text-muted mb-0">Followers</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="fw-bold text-primary mb-0">@stats.TotalStars</h3>
+                <p class="small text-muted mb-0">Total Stars</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="fw-bold text-primary mb-0">@stats.TopLanguage</h3>
+                <p class="small text-muted mb-0">Top Language</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="https://github.com/boba1010" target="_blank" class="btn btn-outline-primary">
+                <i class="bi bi-github"></i> View GitHub Profile
+            </a>
+        </div>
+    }
+</div>
+
+@code {
+    private GitHubStats? stats;
+
+    protected override async Task OnInitializedAsync()
+    {
+        stats = await GitHubStatsService.GetStatsAsync();
+    }
+}
