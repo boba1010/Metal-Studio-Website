@@ -3,7 +3,7 @@
 <h1 class="display-6 fw-semibold mb-3 text-center">Featured</h1>
 
 <div class="row g-4 mb-5">
-    @foreach (var project in ProjectsRepo.Projects)
+    @foreach (var project in ProjectsRepo.FeaturedProjects)
     {
         <div class="col-lg-4">
             <ProjectCard Project="project" />
